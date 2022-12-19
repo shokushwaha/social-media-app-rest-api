@@ -1,0 +1,38 @@
+---- User can do following things ----
+signup
+login -> generating jwt token
+logout
+searchUsers
+getUserByUsername
+getUserById
+getFollowings
+getFollowers
+updateUser       ->jwtVerify
+followUser     -> jwtVerify
+unfollowUser   -> jwtVerify
+
+
+
+---- Posts ----
+createPost  -> jwtVerify
+deletePost  -> jwtVerify
+updatePost  -> jwtVerify
+getArticleUser  -> jwtVerify
+getArticle
+likeUnlike  -> jwtVerify
+
+
+
+
+----Comments----
+addComment  -> jwtVerify
+
+
+
+
+
+
+
+
+models created
+db connected
