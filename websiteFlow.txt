@@ -1,15 +1,21 @@
+✅  routes 
+✅  models
+✅  connection
+✅  jwt generate and verify
+
+
 ---- User can do following things ----
-signup 
-login -> generating jwt token
-logout
-searchUsers
-getUserByUsername
-getUserById
-getFollowings
-getFollowers
-updateUser       ->jwtVerify
-followUser     -> jwtVerify
-unfollowUser   -> jwtVerify
+✅ signup 
+✅ login -> generating jwt token
+✅ logout
+    searchUsers
+✅ getUserByUsername
+✅ getUserById
+✅ getFollowings
+✅ getFollowers
+    updateUser       ->jwtVerify
+✅ followUser     -> jwtVerify
+✅ unfollowUser   -> jwtVerify
 
 
 
@@ -30,15 +36,3 @@ addComment  -> jwtVerify
 
 
 
-
-
-
-compelted --- >>
-models created
-db connected
-signup 
-login 
-logout
-jwt generate token  
-token stored in cookie
-verifyToken function working

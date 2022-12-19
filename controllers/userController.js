@@ -134,6 +134,8 @@ const followUser = async (req, res) => {
             }
             // if current user's followings array does not contain url-user's id then add it in its followings list
             if (!currentUser.followings.includes(usertofollow._id)) {
+                // searching the user which current user have to follow
+                // add url-user to current user followings array
                 await currentUser.updateOne({
                     $push: { followings: usertofollow._id },
                 });
@@ -163,18 +165,23 @@ const followUser = async (req, res) => {
 }
 const unfollowUser = async (req, res) => {
     try {
+        // storing the current user 
         const currentUser = await User.findById({ _id: req.user._id });
+        // if current user's username is not equal to url-user's username then proceed further
         if (currentUser.username !== req.params.username) {
+            // searching the user which current user have to unfollow
             const usertounfollow = await User.findOne({
                 username: req.params.username,
             });
             if (!usertounfollow) {
                 throw new Error("user does not exist");
             }
+            // remove the url-user from current user followings array
             if (currentUser.followings.includes(usertounfollow._id)) {
                 await currentUser.updateOne({
                     $pull: { followings: usertounfollow._id },
                 });
+                // remove current user from url-user followers array
                 await usertounfollow.updateOne({
                     $pull: { followers: currentUser._id },
                 });
