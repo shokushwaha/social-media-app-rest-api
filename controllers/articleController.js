@@ -1,6 +1,6 @@
-const User = require('../models/userModel')
 const Article = require('../models/articleModel')
 
+// create a new article
 const createArticle = async (req, res) => {
     req.body.user = req.user._id;
     const newArticle = new Article(req.body);
@@ -18,6 +18,7 @@ const createArticle = async (req, res) => {
     }
 }
 
+// delete a article
 const deleteArticle = async (req, res) => {
     try {
         const article = await Article.findById(req.params.id);
@@ -42,6 +43,7 @@ const deleteArticle = async (req, res) => {
     }
 }
 
+// update a article
 const updateArticle = async (req, res) => {
     try {
         const article = await Article.findById(req.params.id);
@@ -64,6 +66,7 @@ const updateArticle = async (req, res) => {
         });
     }
 }
+// like and unlike a article
 const likeUnlike = async (req, res) => {
     try {
         const article = await Article.findById(req.params.id);
