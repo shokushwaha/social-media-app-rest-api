@@ -4,7 +4,6 @@ const express = require('express')
 const app = express();
 const cors = require("cors");
 const userRoute = require("./routes/userRoute");
-const { connect } = require('mongoose');
 const cookieParser = require('cookie-parser')
 app.use(cookieParser())
 app.use(cors());
