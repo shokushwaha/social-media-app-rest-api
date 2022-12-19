@@ -11,7 +11,7 @@ const getUser = async (req, res) => {
             throw new Error("user does not exist");
         }
         // if user exist then send the data 
-        const { password, role, ...otherInfo } = user._doc;
+        const { password, __v, role, ...otherInfo } = user._doc;
         res.status(200).send({
             status: "success",
             message: "user info",
@@ -124,7 +124,7 @@ const followUser = async (req, res) => {
 
         // storing the current user  
         const currentUser = await User.findById({ _id: req.user._id });
-        // if current user's username is not equal to url-user's username then process further else return with error
+        // if current user's username is not equal to url-user's username then proceed further else return with error
         if (currentUser.username !== req.params.username) {
             const usertofollow = await User.findOne({
                 username: req.params.username,
