@@ -47,9 +47,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         enum: ["male", "female"],
     },
-    jwtToken: {
-        type: String,
-    },
 });
 
 module.exports = mongoose.model("User", UserSchema);

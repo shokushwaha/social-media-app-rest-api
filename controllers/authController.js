@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../Models/userModel");
 const jwt = require("jsonwebtoken");
-const generateToken = require("../utils/generateToken");
+const generateToken = require("../utils/jwtToken");
 
 // signup
 const signup = async (req, res) => {
@@ -50,12 +50,8 @@ const login = async (req, res) => {
             });
         }
         const accessToken = generateToken.generateAccessToken(user);
-        const refreshToken = generateToken.generateRefreshToken(user);
-        await User.findByIdAndUpdate(user._id, {
-            jwtToken: refreshToken,
-        });
         const { jwtToken, password: newpass, ...other } = user._doc;
-        res.cookie('access-token', refreshToken, {
+        res.cookie('access-token', accessToken, {
             httpOnly: true,
             expiresIn: '60*10'
         });
@@ -63,8 +59,7 @@ const login = async (req, res) => {
             status: "success",
             message: "logged in successfully",
             data: other,
-            accessToken,
-            refreshToken,
+            accessToken
         });
     } catch (e) {
         res.status(500).send({
@@ -86,4 +81,16 @@ const logout = (req, res) => {
     }
 }
 
-module.exports = { signup, login, logout }
+
+// test for jwt middleware
+const confidential = (req, res) => {
+    try {
+        res.json("jwt working");
+    } catch (error) {
+        res.status(400).send({ message: err });
+    }
+
+}
+
+
+module.exports = { signup, login, logout, confidential }

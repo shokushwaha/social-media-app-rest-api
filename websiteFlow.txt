@@ -1,5 +1,5 @@
 ---- User can do following things ----
-signup
+signup 
 login -> generating jwt token
 logout
 searchUsers
@@ -33,6 +33,12 @@ addComment  -> jwtVerify
 
 
 
-
+compelted --- >>
 models created
 db connected
+signup 
+login 
+logout
+jwt generate token  
+token stored in cookie
+verifyToken function working
